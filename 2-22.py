@@ -14,9 +14,10 @@ def main():
 
 def naive_bayes(training1_sentence, training2_sentence, testing_sentence, alpha, prob1, prob2):
     # Implement Naive Bayes Algorithm here...
-    testing_bow = create_BOW(testing_sentence)
-    classify1 =  prob1 * calculate_doc_prob(create_BOW(training1_sentence), testing_bow, alpha)
-    classify2 =  prob2 * calculate_doc_prob(create_BOW(training2_sentence), testing_bow, alpha)
+    cl1 = prob1 * math.exp(calculate_doc_prob(create_BOW(training1_sentence), create_BOW(testing_sentence), alpha))
+    cl2 = prob2 * math.exp(calculate_doc_prob(create_BOW(training2_sentence), create_BOW(testing_sentence), alpha))
+    classify1 =  math.log(cl1 if cl1 > 0 else 1)
+    classify2 =  math.log(cl2 if cl2 > 0 else 1)
 
     return normalize_log_prob(classify1, classify2)
 
