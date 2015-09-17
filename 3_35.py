@@ -12,6 +12,7 @@ def main():
     noisy_circles = pd.read_csv('noisy_circle.csv')
     noisy_circles = noisy_circles.set_index('index')
     blobs = pd.read_csv('blobs.csv')
+
     blobs = blobs.set_index('index')
     
     return draw_graph([noisy_circles, blobs])
